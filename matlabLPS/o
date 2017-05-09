@@ -1,0 +1,48 @@
+function [ outstring ] = converttoGGA( x,y,z )
+%UNTITLED2 Summary of this function goes here
+%   Detailed explanation goes here
+
+
+
+Lat=41.370252+(x/111319.9);
+lat2=degrees2dms(lat);
+Lat=lat2(1)*100 + lat2(2) +lat2(3)/100;
+
+Long=-72.098724+(y/111319.9);
+Long2=degrees2dms(Long);
+Long=Long2(1)*100 + Long2(2) +Long2(3)/100;
+tiempo=clock;
+outstring=strcat('$GNGGA,',num2str(tiempo(4),num2str(tiempo(5)),num2str(round(tiempo(6))),',',num2str(Lat),',N,',num2str(Long),',W,1,08,0.9,',num2str(z),',M,46.9,M,,*47');
+
+
+
+end
+% 
+% 
+% GGA - essential fix data which provide 3D location and accuracy data.
+% 
+%  $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47
+% 
+% Where:
+%      GGA          Global Positioning System Fix Data
+%      123519       Fix taken at 12:35:19 UTC
+%      4807.038,N   Latitude 48 deg 07.038' N
+%      01131.000,E  Longitude 11 deg 31.000' E
+%      1            Fix quality: 0 = invalid
+%                                1 = GPS fix (SPS)
+%                                2 = DGPS fix
+%                                3 = PPS fix
+% 			       4 = Real Time Kinematic
+% 			       5 = Float RTK
+%                                6 = estimated (dead reckoning) (2.3 feature)
+% 			       7 = Manual input mode
+% 			       8 = Simulation mode
+%      08           Number of satellites being tracked
+%      0.9          Horizontal dilution of position
+%      545.4,M      Altitude, Meters, above mean sea level
+%      46.9,M       Height of geoid (mean sea level) above WGS84
+%                       ellipsoid
+%      (empty field) time in seconds since last DGPS update
+%      (empty field) DGPS station ID number
+%      *47          the checksum data, always begins with *
+% 
