@@ -25,7 +25,8 @@ AR = np.array([10.0,1.0,1.0,1.0])
 
 #noise to add into the psuedorange 
 noise = np.random.normal(0,0.25,4)
-# print(noise)
+noise = [ 0.1386615 ,  0.15243554 ,-0.0791783,   0.13177498]
+print(noise)
 # first argument is the mean of the normal distribution you are choosing from
 # 2nd is the standard deviation of the normal distribution
 # third is the number of elements you get in array 
@@ -45,7 +46,7 @@ for idx in range(0,10):
 	YH = (assumed_pos[1] - AnchorsY)/AR
 	ZH = (assumed_pos[2] - AnchorsZ)/AR
 	#create your H matrix
-	H = [[XH[0] , YH[0],ZH[0]]     ,[XH[1] , YH[1],ZH[1]],    [XH[1] , YH[2],ZH[2]]   ,    [XH[3] , YH[3],ZH[3]]]
+	H = [[XH[0] , YH[0],ZH[0]]     ,[XH[1] , YH[1],ZH[1]],    [XH[2] , YH[2],ZH[2]]   ,    [XH[3] , YH[3],ZH[3]]]
 	deltaPR = np.subtract(AR,PR)
 	#solve
 	posChang =  np.linalg.lstsq(H,deltaPR,rcond=None)[0]
